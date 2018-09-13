@@ -1,0 +1,28 @@
+class Solution(object):
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        if n == 1:
+            return "1"
+        proun = "1" # the start is 1
+        while n > 1:
+            # start with n=1, reduce n by 1 each time
+            length = len(proun)
+            output = ""
+            count = 1
+            for i in range(0,length):
+                if (i+1<length):
+                    if (proun[i] == proun[i+1]):
+                        count += 1
+                    else:
+                        output += str(count)+str(proun[i])
+                        count = 1
+                else: #end of array or same number is ended  
+                    output += str(count)+str(proun[i])
+                    count = 1
+            # get output of 1 now    
+            proun = output
+            n -=1
+        return proun
