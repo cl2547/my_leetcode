@@ -1,0 +1,21 @@
+class Solution:
+    def permuteUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 2:
+            return [nums]
+
+        return_list = []
+        appeared = []
+
+        for num in nums:
+            if num not in appeared:
+                appeared.append(num)
+                copy_nums = nums.copy()
+                copy_nums.remove(num)
+                lists = self.permuteUnique(copy_nums)
+                for sub_list in lists:
+                    return_list.append([num] + sub_list)
+        return return_list
